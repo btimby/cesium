@@ -1,0 +1,10 @@
+{
+  "id": "com.cesium.app",
+  "version": "0.0.1",
+  "vendor": "Ben Timby <btimby@gmail.com>",
+  "type": "web",
+  "main": "index.html",
+  "title": "Cesium",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png"
+}

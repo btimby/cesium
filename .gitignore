@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Cesium
+com.cesium.app_0.0.1_all.ipk
+webos
