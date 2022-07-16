@@ -6,5 +6,8 @@
   "main": "index.html",
   "title": "Cesium",
   "icon": "icon.png",
-  "largeIcon": "largeIcon.png"
+  "largeIcon": "icon_large.png",
+  "splashBackground": "splash.png",
+  "iconColor": "474747",
+  "disableBackHistoryAPI": true
 }
