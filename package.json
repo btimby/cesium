@@ -11,17 +11,21 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@mdi/font": "^6.9.96",
     "@procot/webostv": "^1.2.5",
     "buefy": "^0.9.21",
     "bulma": "^0.9.4",
     "core-js": "^2.6.5",
     "debug": "^4.3.2",
-    "errokees": "^0.1.0",
+    "errokees": "^0.1.2",
+    "sass": "^1.53.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
   "devDependencies": {
     "@vue/cli-service": "^3.7.0",
-    "vue-template-compiler": "^2.5.21"
+    "sass-loader": "^10.3.1",
+    "vue-template-compiler": "^2.5.21",
+    "webpack": "^4.46.0"
   }
 }

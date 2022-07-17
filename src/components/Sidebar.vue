@@ -1,89 +1,100 @@
 <template>
-    <div class="sidebar-page">
-        <section class="sidebar-layout">
-             <b-sidebar
-                position="static"
-                :mobile="mobile"
-                :expand-on-hover="expandOnHover"
-                :reduce="reduce"
-                :delay="expandWithDelay ? 500 : null"
-                type="is-light"
-                open
-            >
-                <div class="p-1">
-                    <div class="block">
-                    <img
-                        src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-                        alt="Lightweight UI components for Vue.js based on Bulma"
-                    />
-                    </div>
-                    <b-menu class="is-custom-mobile">
-                        <b-menu-list label="Menu">
-                            <b-menu-item icon="information-outline" label="Info"></b-menu-item>
-                            <b-menu-item active expanded icon="settings" label="Administrator">
-                                <b-menu-item icon="account" label="Users"></b-menu-item>
-                                <b-menu-item icon="cellphone-link" label="Devices"></b-menu-item>
-                                <b-menu-item icon="cash-multiple" label="Payments" disabled></b-menu-item>
-                            </b-menu-item>
-                            <b-menu-item icon="account" label="My Account">
-                                <b-menu-item icon="account-box" label="Account data"></b-menu-item>
-                                <b-menu-item icon="home-account" label="Addresses"></b-menu-item>
-                            </b-menu-item>
-                        </b-menu-list>
-                        <b-menu-list>
-                            <b-menu-item label="Expo" icon="link"></b-menu-item>
-                        </b-menu-list>
-                        <b-menu-list label="Actions">
-                            <b-menu-item icon="logout" label="Logout"></b-menu-item>
-                        </b-menu-list>
-                    </b-menu>
-                </div>
-            </b-sidebar>
-
-            <div class="p-1">
-                <b-field>
-                    <b-switch v-model="reduce">Reduced</b-switch>
-                </b-field>
-                <b-field>
-                    <b-switch v-model="expandOnHover">Expand on hover</b-switch>
-                </b-field>
-                <b-field>
-                    <b-switch v-model="expandWithDelay">Hover with delay</b-switch>
-                </b-field>
-                <b-field label="Mobile Layout">
-                    <b-select v-model="mobile">
-                        <option :value="null"></option>
-                        <option value="reduce">Reduced</option>
-                        <option value="hide">Hidden</option>
-                        <option value="fullwidth">Fullwidth</option>
-                    </b-select>
-                </b-field>
-            </div>
-        </section>
-    </div>
-  </template>
+  <section>
+    <b-sidebar
+      type="is-dark"
+      :fullheight="true"
+      :fullwidth="false"
+      :overlay="false"
+      :right="false"
+      :reduce="!open"
+      open
+    >
+      <div class="p-1">
+        <img
+          id="logo"
+          :src="icon"
+          alt="Video player"
+        />
+        <b-menu>
+          <div
+            @errokeesselected="onMenuSelected"
+            @errokeesdeselected="onMenuDeselected"
+            class="errokees-selectable"
+          >
+            <b-menu-list>
+              <b-menu-item
+                icon="information-outline"
+                label="Info"
+              ></b-menu-item>
+            </b-menu-list>
+          </div>
+          <b-menu-list>
+            <b-menu-item
+              @errokeesselected="onMenuSelected"
+              @errokeesdeselected="onMenuDeselected"
+              class="errokees-selectable"
+              label="Expo"
+              icon="link"
+              tag="router-link"
+              target="_blank"
+              to="/expo"
+            ></b-menu-item>
+          </b-menu-list>
+          <b-menu-list>
+            <b-menu-item
+              @errokeesselected="onMenuSelected"
+              @errokeesdeselected="onMenuDeselected"
+              class="errokees-selectable"
+              icon="logout"
+              label="Logout"
+            ></b-menu-item>
+          </b-menu-list>
+        </b-menu>
+      </div>
+    </b-sidebar>
+    <b-button
+      class="errokees-selectable is-dark"
+      @click="open = !open"
+      style="margin-left: 400; height: 400"
+    >Show</b-button>
+  </section>
+</template>
 
 <script>
+import icon from '@/assets/icon.png';
+
 export default {
-  name: 'Sidebar',
-
-  components: {
-  },
-
   data() {
     return {
-      expandOnHover: false,
-      expandWithDelay: false,
-      mobile: "reduce",
-      reduce: false,
+      open: false,
+      icon,
     };
   },
-}
+
+  methods: {
+    onMenuSelected() {
+      console.log('Selected');
+      this.open = true;
+    },
+
+    onMenuDeselected() {
+      console.log('Deselected');
+      this.open = false;
+    }
+  },
+};
 </script>
 
-<style scoped lang="scss">
-  .p-1 {
+<style lang="scss">
+#logo {
+  margin-bottom: 10;
+  width: 40px;
+}
+.p-1 {
   padding: 1em;
+}
+.errokees-selected {
+  background-color: white;
 }
 .sidebar-page {
     display: flex;
@@ -98,63 +109,32 @@ export default {
         // min-height: 100vh;
     }
 }
-@media screen and (max-width: 1023px) {
-    .b-sidebar {
-        .sidebar-content {
-            &.is-mini-mobile {
-                &:not(.is-mini-expand),
-                &.is-mini-expand:not(:hover):not(.is-mini-delayed) {
-                    .menu-list {
-                        li {
-                            a {
-                                span:nth-child(2) {
-                                    display: none;
-                                }
+.b-sidebar {
+    .sidebar-content {
+      width: 120px;
+        &.is-mini {
+          width: 48px;
+            &:not(.is-mini-expand),
+            &.is-mini-expand:not(:hover):not(.is-mini-delayed) {
+                .menu-list {
+                    li {
+                        a {
+                            span:nth-child(2) {
+                                display: none;
                             }
-                            ul {
-                                padding-left: 0;
-                                li {
-                                    a {
-                                        display: inline-block;
-                                    }
+                        }
+                        ul {
+                            padding-left: 0;
+                            li {
+                                a {
+                                    display: inline-block;
                                 }
                             }
                         }
-                    }
-                    .menu-label:not(:last-child) {
-                        margin-bottom: 0;
                     }
                 }
-            }
-        }
-    }
-}
-@media screen and (min-width: 1024px) {
-    .b-sidebar {
-        .sidebar-content {
-            &.is-mini {
-                &:not(.is-mini-expand),
-                &.is-mini-expand:not(:hover):not(.is-mini-delayed) {
-                    .menu-list {
-                        li {
-                            a {
-                                span:nth-child(2) {
-                                    display: none;
-                                }
-                            }
-                            ul {
-                                padding-left: 0;
-                                li {
-                                    a {
-                                        display: inline-block;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .menu-label:not(:last-child) {
-                        margin-bottom: 0;
-                    }
+                .menu-label:not(:last-child) {
+                    margin-bottom: 0;
                 }
             }
         }

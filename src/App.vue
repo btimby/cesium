@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="app"></div>
     <Sidebar/>
   </div>
 </template>
@@ -22,7 +23,15 @@ export default {
   },
 
   mounted() {
-    this.errokees = new Errokees();
+    this.errokees = new Errokees({
+      origin: 'left',
+      selectEvent: {
+        name: 'errokeesselected',
+      },
+      deselectEvent: {
+        name: 'errokeesdeselected',
+      },
+    });
   },
 
   unmounted() {

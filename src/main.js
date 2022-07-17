@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Buefy from 'buefy';
 import '@procot/webostv';
-import 'bulma/css/bulma.css';
+import '@/assets/theme.scss'
+import '@mdi/font/css/materialdesignicons.css';
 import App from "./App.vue";
 import router from "./router";
 
