@@ -1,133 +1,60 @@
 <template>
-  <div class="is-widescreen">
-    <div class="columns is-desktop">
-      <sidebar
-        :collapsed="collapsed"
-        :highlight="highlight"
-        :menu="menu"
-      />
-      <div class="column content">
-        <router-view></router-view>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
       </div>
-    </div>
-  </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <Grid/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar';
+import Grid from './components/Grid';
 
 export default {
   name: 'App',
 
   components: {
-    Sidebar,
+    Grid,
   },
 
-  data() {
-    const menu = [
-        { icon: 'user', label: 'Account', href: '/account' },
-        { icon: 'search', label: 'Search', href: '/search' },
-        { icon: 'home', label: 'Home', href: '/' },
-        { icon: 'rss', label: 'Subscriptions', href: '/subscriptions' },
-        { icon: 'settings', label: 'Settings', href: '/settings' },
-    ];
-    const highlight = menu.findIndex((item) => item.href === this.$route.path);
-  
-    return {
-      collapsed: true,
-      menu,
-      highlight,
-    };
-  },
-
-  mounted() {
-    console.log('Adding router hook');
-    this.$router.beforeEach((to, _, next) => {
-      this.highlight = this.menu.findIndex((item) => item.href === to.path);
-      this.collapsed = true;
-      next();
-    });
-    window.addEventListener('keydown', this.keyDown);
-    this.$bus.$on('back', () => {
-      // Open menu and start handling keys again.
-      this.collapsed = false;
-    });
-  },
-
-  destroyed() {
-    window.removeEventListener('keydown', this.keyDown);
-  },
-
-  methods: {
-    menuMove(dir) {
-      if (dir === 'up' && this.highlight === 0) {
-        this.highlight = this.menu.length - 1;
-      } else if (dir === 'down' && this.highlight === this.menu.length - 1) {
-        this.highlight = 0;
-      } else {
-        this.highlight += (dir === 'up') ? -1 : 1;
-      }
-    },
-
-    keyDown(ev) {
-      let keyCode;
-
-      if (window.event) {
-        keyCode = ev.keyCode;
-      } else if (ev.which) {
-        keyCode = ev.which;
-      }
-
-      if (this.collapsed) {
-        // Emit key presses for other components.
-        this.$bus.$emit('keyDown', keyCode);
-        return;
-      }
-
-      switch (keyCode) {
-        case 27:   // Esc key
-        case 461:  // Back button
-          this.collapsed = !this.collapsed;
-          break;
-
-        case 38:   // Up key
-          this.menuMove('up');
-          break;
-
-        case 40:   // Down key
-          this.menuMove('down');
-          break;
-
-        case 13:   // Enter / OK
-          const item = this.menu[this.highlight];
-          this.$router.push({ path: item.href });
-          this.collapsed = true;
-          break;
-
-        default:
-          console.log(`Unknown keyCode: ${keyCode}`);
-          break;
-      }
-
-      ev.preventDefault();
-    },
-  },
-}
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style>
-/* webos styles */
-a {
-  cursor: default;
-}
-
-body {
-  background: #171717;
-  overflow: hidden;
-}
-/* end webos styles */
-
-.content {
-  display: inline-block;
-}
-</style>

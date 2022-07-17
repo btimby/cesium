@@ -1,26 +1,35 @@
 {
   "name": "cesium",
-  "displayName": "Cesium",
-  "description": "This is an LG WebOS Peertube viewer",
   "private": true,
-  "main": "index.js",
+  "description": "This is an LG WebOS Peertube viewer",
   "author": "wvue Team",
-  "license": "Apache-2.0",
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve"
   },
+  "main": "index.js",
   "dependencies": {
+    "@procot/webostv": "^1.2.5",
     "core-js": "^2.6.5",
     "debug": "^4.3.2",
     "errokees": "^0.1.0",
     "feather-icons-vue": "^1.0.4",
+    "lorem-ipsum": "^2.0.8",
+    "material-design-icons": "^3.0.1",
     "peertube": "^3.0.1",
+    "typeface-roboto": "^1.1.13",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3"
+    "vue-router": "^3.0.3",
+    "vuetify": "^2.6.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^3.7.0",
-    "vue-template-compiler": "^2.5.21"
-  }
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.5.1",
+    "vue-template-compiler": "^2.5.21",
+    "vuetify-loader": "^1.7.0"
+  },
+  "displayName": "Cesium",
+  "license": "Apache-2.0"
 }

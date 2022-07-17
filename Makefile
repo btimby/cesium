@@ -19,6 +19,12 @@ install-tv: build
 install-emu: build
 	ares-install --device=emulator com.cesium.app_0.0.1_all.ipk
 
+uninstall-emu:
+	ares-install --device=emulator -r com.cesium.app
+
+uninstall-tv:
+	ares-install --device=livingroom -r com.cesium.app
+
 run: install-tv
 	ares-launch --device=livingroom com.cesium.app
 
