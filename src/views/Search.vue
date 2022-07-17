@@ -1,5 +1,4 @@
 <template>
-  <div class="about">
-    <h1>This is the search page</h1>
+  <div>
   </div>
 </template>

@@ -1,7 +1,6 @@
 <template>
-  <ul class="menu-list">
-    <slot/>
-  </ul>
+  <div>
+  </div>
 </template>
 
 <script>
@@ -11,5 +10,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

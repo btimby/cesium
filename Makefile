@@ -3,7 +3,10 @@ WEBOS = $(shell find webos)
 
 $(WEBOS):
 
-com.cesium.app_0.0.1_all.ipk: webos/index.html $(WEBOS)
+node_modules: package-lock.json
+	npm i
+
+com.cesium.app_0.0.1_all.ipk: node_modules webos/index.html $(WEBOS)
 	ares-package webos
 
 webos/index.html: $(VUE)
@@ -26,10 +29,10 @@ emu: install-emu
 	ares-launch --device=emulator com.cesium.app
 
 .PHONY: dev
-dev:
+dev: node_modules
 	npm run dev
 
 clean:
-	rm com.cesium.app_0.0.1_all.ipk
-	rm webos/index.html webos/favicon.ico
-	rm -rf webos/assets
+	rm -f com.cesium.app_0.0.1_all.ipk
+	rm -f webos/index.html webos/favicon.ico
+	rm -rf webos/assets node_modules/

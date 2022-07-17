@@ -11,11 +11,12 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@procot/webostv": "^1.2.5",
+    "buefy": "^0.9.21",
+    "bulma": "^0.9.4",
     "core-js": "^2.6.5",
     "debug": "^4.3.2",
     "errokees": "^0.1.0",
-    "feather-icons-vue": "^1.0.4",
-    "peertube": "^3.0.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
