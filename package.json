@@ -1,7 +1,7 @@
 {
   "name": "cesium",
   "displayName": "Cesium",
-  "description": "This is an LG WebOS Peertube viewer",
+  "description": "LG WebOS video player",
   "private": true,
   "main": "index.js",
   "author": "wvue Team",
