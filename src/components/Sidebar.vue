@@ -6,7 +6,9 @@
       :fullwidth="false"
       :overlay="false"
       :right="false"
+      mobile="reduce"
       :reduce="!open"
+      :show="visible"
       open
     >
       <div class="p-1">
@@ -28,35 +30,36 @@
               ></b-menu-item>
             </b-menu-list>
           </div>
-          <b-menu-list>
-            <b-menu-item
-              @errokeesselected="onMenuSelected"
-              @errokeesdeselected="onMenuDeselected"
-              class="errokees-selectable"
-              label="Expo"
-              icon="link"
-              tag="router-link"
-              target="_blank"
-              to="/expo"
-            ></b-menu-item>
-          </b-menu-list>
-          <b-menu-list>
-            <b-menu-item
-              @errokeesselected="onMenuSelected"
-              @errokeesdeselected="onMenuDeselected"
-              class="errokees-selectable"
-              icon="logout"
-              label="Logout"
-            ></b-menu-item>
-          </b-menu-list>
+          <div
+            @errokeesselected="onMenuSelected"
+            @errokeesdeselected="onMenuDeselected"
+            class="errokees-selectable"
+          >
+            <b-menu-list>
+              <b-menu-item
+                label="Expo"
+                icon="link"
+                tag="router-link"
+                target="_blank"
+                to="/expo"
+              ></b-menu-item>
+            </b-menu-list>
+          </div>
+          <div
+            @errokeesselected="onMenuSelected"
+            @errokeesdeselected="onMenuDeselected"
+            class="errokees-selectable"
+          >
+            <b-menu-list>
+              <b-menu-item
+                icon="logout"
+                label="Logout"
+              ></b-menu-item>
+            </b-menu-list>
+          </div>
         </b-menu>
       </div>
     </b-sidebar>
-    <b-button
-      class="errokees-selectable is-dark"
-      @click="open = !open"
-      style="margin-left: 400; height: 400"
-    >Show</b-button>
   </section>
 </template>
 
@@ -64,6 +67,15 @@
 import icon from '@/assets/icon.png';
 
 export default {
+  name: 'Sidebar',
+
+  props: {
+    visible: {
+      type: Boolean,
+      default: true,
+    }
+  },
+
   data() {
     return {
       open: false,
@@ -90,12 +102,15 @@ export default {
   margin-bottom: 10;
   width: 40px;
 }
+
 .p-1 {
   padding: 1em;
 }
+
 .errokees-selected {
   background-color: white;
 }
+
 .sidebar-page {
     display: flex;
     flex-direction: column;
@@ -109,6 +124,7 @@ export default {
         // min-height: 100vh;
     }
 }
+
 .b-sidebar {
     .sidebar-content {
       width: 120px;
@@ -140,6 +156,7 @@ export default {
         }
     }
 }
+
 .is-mini-expand {
     .menu-list a {
         white-space: nowrap;

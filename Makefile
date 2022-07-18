@@ -4,7 +4,7 @@ TV=livingroom
 EMU=emulator
 APP=com.cesium.app
 
-$(WEBOS):
+$(WEBOS_SRC):
 
 
 node_modules: package-lock.json
@@ -40,13 +40,13 @@ emu: install-emu
 	ares-launch --device=${EMU} ${APP}
 
 
-.PHONY: debug-tv
-debug: run
+.PHONY: debug
+debug:
 	ares-inspect --device=${TV} ${APP}
 
 
 .PHONY: debug-emu
-debug-emu: emu
+debug-emu:
 	ares-inspect --device=${EMU} ${APP}
 
 
