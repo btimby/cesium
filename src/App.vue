@@ -1,17 +1,12 @@
 <template>
   <div class="sidebar-page">
     <section class="sidebar-layout">
-      <Sidebar
-        :visible="true"
-      />
-      <Grid
-        @video:play="playVideo"
-      />
+      <Sidebar/>
+      <router-view/>
     </section>
     <Player
       :visible="player.visible"
       :src="player.src"
-      @stop="onPlayerStop"
     />
   </div>
 </template>
@@ -21,15 +16,6 @@ import Errokees from 'errokees';
 import Sidebar from '@/components/Sidebar';
 import Grid from '@/components/Grid';
 import Player from '@/components/Player';
-
-const BACK = 'GoBack';
-const PLAY = 'MediaPlayPause';
-const PAUSE = 'Pause';
-const FFD = 'MediaFastForward';
-const RWD = 'MediaRewind';
-const STOP = 'Cancel';
-const CHANUP = 'PageUp';
-const CHANDN = 'PageDown';
 
 export default {
   name: 'App',
@@ -60,7 +46,8 @@ export default {
         name: 'errokeesdeselected',
       },
     });
-    document.addEventListener('keydown', this.onKeyDown.bind(this));
+    this.$bus.$on('video:play', this.onVideoPlay.bind(this));
+    this.$bus.$on('video:stop', this.onVideoStop.bind(this));
   },
 
   unmounted() {
@@ -69,18 +56,12 @@ export default {
   },
 
   methods: {
-    onKeyDown(ev) {
-      if (ev.key === 'GoBack') {
-        this.player.visible = !this.player.visible;
-      }
-    },
-
-    onPlayerStop() {
+    onVideoStop() {
       this.errokees.resume();
       this.player.visible = false;
     },
 
-    playVideo(video) {
+    onVideoPlay(video) {
       console.log('playing', video);
       this.errokees.pause();
       this.player.src = video.src;

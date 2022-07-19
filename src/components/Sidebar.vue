@@ -8,7 +8,7 @@
       :right="false"
       mobile="reduce"
       :reduce="!open"
-      :show="visible"
+      :can-cancel="false"
       open
     >
       <div class="p-1">
@@ -69,13 +69,6 @@ import icon from '@/assets/icon.png';
 export default {
   name: 'Sidebar',
 
-  props: {
-    visible: {
-      type: Boolean,
-      default: true,
-    }
-  },
-
   data() {
     return {
       open: false,
@@ -108,7 +101,8 @@ export default {
 }
 
 .errokees-selected {
-  background-color: white;
+  background-color: hsl(0deg, 0%, 96%);
+  color: hsl(0deg, 0%, 21%);
 }
 
 .sidebar-page {

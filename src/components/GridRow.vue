@@ -6,9 +6,8 @@
     >{{ channel.name }}</p>
     <div class="scrollable">
       <div
-        class="card has-background-dark errokees-selectable"
+        class="card has-background-dark errokees-selectable video"
         data-ek-activated-event="errokees:activate"
-        style="width: 320px; margin: 4px"
         v-for="(video, i) in channel.videos"
         :key="i"
         @errokees:activate="playVideo(video.id)"
@@ -58,6 +57,13 @@ export default {
 </script>
 
 <style scoped>
+.video {
+  min-width: 320px;
+  max-width: 320px;
+  margin: 4px;
+  text-overflow: ellipsis;
+}
+
 .poster {
     width: 320;
     height: 200;

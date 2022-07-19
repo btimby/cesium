@@ -13,8 +13,8 @@
 import GridRow from '@/components/GridRow';
 
 function makeId(length) {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var charactersLength = characters.length;
   for ( var i = 0; i < length; i++ ) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -26,6 +26,42 @@ const TIMCAST = [
   {
     name: 'IRL',
     videos: [
+      {
+        id: makeId(10),
+        title: 'Taylor SIlverman Member Podcast: BLM Heckles Crying Mother After Black man Tried To Kill Her Family, Crew Talks Abortion And Porn Addictions',
+        src: 'https://sp.rmbl.ws/s8/2/n/x/N/4/nxN4e.caa.mp4?u=lf6yv&b=1',
+        poster: 'https://sp.rmbl.ws/s8/6/n/x/N/4/nxN4e.OvCc.jpg',
+      },
+      {
+        id: makeId(10),
+        title: 'Vanessa Santos Member Podcast: Democrats Push HOAX About Little Girl Getting Abortion, Abortionist Could Be CRIMINALLY Charged For Not Reporting Rape ',
+        src: 'https://sp.rmbl.ws/s8/2/R/r/R/1/RrR1e.caa.mp4?u=lf6yv&b=1',
+        poster: 'https://sp.rmbl.ws/s8/6/R/r/R/1/RrR1e.OvCc.jpg',
+      },
+      {
+        id: makeId(10),
+        title: 'Kurt Schlichter Member Podcast: The Scenarios of Civil War, How The Spark Will Happen And Who Will Fight',
+        src: 'https://sp.rmbl.ws/s8/2/3/v/2/0/3v20e.caa.mp4?u=lf6yv&b=1',
+        poster: 'https://sp.rmbl.ws/s8/6/3/v/2/0/3v20e.OvCc.jpg',
+      },
+      {
+        id: makeId(10),
+        title: 'Adrianne Curry Member Podcast: Trump ROASTS Elon, Adrianne Says Libby Has Epic Titties',
+        src: 'https://sp.rmbl.ws/s8/2/7/l/c/0/7lc0e.caa.mp4?u=lf6yv&b=1',
+        poster: 'https://sp.rmbl.ws/s8/6/7/l/c/0/7lc0e.OvCc.jpg',
+      },
+      {
+        id: makeId(10),
+        title: 'Dave Landau Member Podcast: Jill Biden Calls Hispanics "Tacos" Crew Has To See Naked Hunter Biden But Its Funny',
+        src: 'https://sp.rmbl.ws/s8/2/J/U/k/Z/JUkZe.caa.mp4?u=lf6yv&b=1',
+        poster: 'https://sp.rmbl.ws/s8/6/J/U/k/Z/JUkZe.OvCc.jpg',
+      },
+      {
+        id: makeId(10),
+        title: 'Taylor SIlverman Member Podcast: BLM Heckles Crying Mother After Black man Tried To Kill Her Family, Crew Talks Abortion And Porn Addictions',
+        src: 'https://sp.rmbl.ws/s8/2/n/x/N/4/nxN4e.caa.mp4?u=lf6yv&b=1',
+        poster: 'https://sp.rmbl.ws/s8/6/n/x/N/4/nxN4e.OvCc.jpg',
+      },
       {
         id: makeId(10),
         title: 'Vanessa Santos Member Podcast: Democrats Push HOAX About Little Girl Getting Abortion, Abortionist Could Be CRIMINALLY Charged For Not Reporting Rape',
@@ -148,15 +184,35 @@ export default {
       });
 
       if (video) {
-        this.$emit('video:play', video);
+        this.$bus.$emit('video:play', video);
       }
     }
   },
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 #grid {
-  margin-left: 160px;
+  padding-left: 140px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.sidebar-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    // min-height: 100vh;
+    .sidebar-layout {
+        display: flex;
+        flex-direction: row;
+        min-height: 100%;
+        // min-height: 100vh;
+    }
 }
 </style>

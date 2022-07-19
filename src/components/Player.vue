@@ -5,13 +5,26 @@
     <video
       autoplay
       ref="video"
-      :controls="controls"
+      :controls="false"
       :src="src"
     ></video>
   </div>
 </template>
 
 <script>
+// NOTE: keyCodes
+const BACK = 461;
+const ESC = 27;
+const PLAY = 179;
+const PAUSE = 19;
+const FFD = 228;
+const RWD = 227;
+const STOP = 169;
+const CHANUP = 33;
+const CHANDN = 34;
+const RIGHT = 39;
+const LEFT = 37;
+
 export default {
   name: 'Player',
 
@@ -34,20 +47,16 @@ export default {
     document.removeEventListener('keydown', this.onKeyDown.bind(this));
   },
 
-  data() {
-    return {
-      controls: false,
-    };
-  },
-
   watch: {
     visible(newValue, oldValue) {
+      const video = this.$refs.video;
+
       if (oldValue && !newValue) {
         // Hiding.
-        this.$refs.video.pause();
+        video.pause();
       } else if (!oldValue && newValue) {
         // Showing.
-        this.$refs.video.play();
+        video.play();
       }
     },
   },
@@ -56,21 +65,38 @@ export default {
     onKeyDown(ev) {
       const video = this.$refs.video;
 
-      if (ev.key === 'Pause') {
-        video.pause();
-      } else if (ev.key === 'MediaPlayPause') {
-        if (this.$refs.video.playing) {
+      switch (ev.keyCode) {
+        case PAUSE:
           video.pause();
-        } else {
-          video.play();
-        }
-      } else if (ev.key === 'ArrowRight' || ev.key === 'MediaFastForward') {
-        video.currentTime += 10;
-      } else if (ev.key === 'ArrowLeft' || ev.key === 'MediaRewind') {
-        video.currentTime -= 10;
-      } else if (ev.key === 'Cancel') {
-        video.pause();
-        this.$emit('stop');
+          break;
+
+        case PLAY:
+          if (video.playing) {
+            video.pause();
+          } else {
+            video.play();
+          }
+          break;
+
+        case RIGHT:
+        case FFD:
+          video.currentTime += 10;
+          break;
+
+        case LEFT:
+        case RWD:
+          video.currentTime -= 10;
+          break;
+
+        case STOP:
+        case BACK:
+        case ESC:
+          this.$bus.$emit('video:stop');
+          break;
+
+        default:
+          console.log('Unknown key:', ev.keyCode);
+          break;
       }
     },
   },
@@ -88,16 +114,14 @@ video {
 }
 
 .overlay {
-  /* Height & width depends on how you want to reveal the overlay (see JS below) */   
   height: 100%;
   width: 100%;
-  position: absolute; /* Stay in place */
-  z-index: 1000; /* Sit on top */
+  position: absolute;
+  z-index: 1000;
   left: 0;
   top: 0;
-  background-color: rgb(0,0,0); /* Black fallback color */
-  background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow: hidden;
 }
 </style>
