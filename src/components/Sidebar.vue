@@ -19,8 +19,8 @@
         />
         <b-menu>
           <div
-            @errokeesselected="onMenuSelected"
-            @errokeesdeselected="onMenuDeselected"
+            @errokees:selected="onMenuSelected"
+            @errokees:deselected="onMenuDeselected"
             data-ek-activate-event-name="click"
             data-ek-activate-event-target="a"
             class="errokees-selectable"
@@ -35,8 +35,8 @@
             </b-menu-list>
           </div>
           <div
-            @errokeesselected="onMenuSelected"
-            @errokeesdeselected="onMenuDeselected"
+            @errokees:selected="onMenuSelected"
+            @errokees:deselected="onMenuDeselected"
             data-ek-activate-event-name="click"
             data-ek-activate-event-target="a"
             class="errokees-selectable"
@@ -51,8 +51,8 @@
             </b-menu-list>
           </div>
           <div
-            @errokeesselected="onMenuSelected"
-            @errokeesdeselected="onMenuDeselected"
+            @errokees:selected="onMenuSelected"
+            @errokees:deselected="onMenuDeselected"
             data-ek-activate-event-name="click"
             data-ek-activate-event-target="a"
             class="errokees-selectable"
@@ -67,8 +67,8 @@
             </b-menu-list>
           </div>
           <div
-            @errokeesselected="onMenuSelected"
-            @errokeesdeselected="onMenuDeselected"
+            @errokees:selected="onMenuSelected"
+            @errokees:deselected="onMenuDeselected"
             data-ek-activate-event-name="click"
             data-ek-activate-event-target="a"
             class="errokees-selectable"

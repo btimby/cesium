@@ -16,6 +16,7 @@
 const BACK = 461;
 const ESC = 27;
 const PLAY = 179;
+const PLAY_TV = 415;  // NOTE: different on TV vs. emu.
 const PAUSE = 19;
 const FFD = 228;
 const RWD = 227;
@@ -43,8 +44,6 @@ export default {
     const video = this.$refs.video;
     document.addEventListener('keydown', this.onKeyDown.bind(this));
     video.addEventListener('playing', () => this.$bus.$emit('idle'));
-    video.addEventListener('stalled', () => this.$bus.$emit('busy'));
-    video.addEventListener('waiting', () => this.$bus.$emit('busy'));
   },
 
   unmounted() {
@@ -52,8 +51,10 @@ export default {
   },
 
   watch: {
-    src() {
-      this.$bus.$emit('busy');
+    src(newValue) {
+      if (newValue) {
+        this.$bus.$emit('busy');
+      }
     },
 
     visible(newValue, oldValue) {
@@ -75,10 +76,8 @@ export default {
 
       switch (ev.keyCode) {
         case PAUSE:
-          video.pause();
-          break;
-
         case PLAY:
+        case PLAY_TV:
           if (video.paused) {
             video.play();
           } else {
@@ -103,7 +102,7 @@ export default {
           break;
 
         default:
-          console.log('Unknown key:', ev.keyCode);
+          console.log('Unknown keyCode:', ev.keyCode);
           break;
       }
     },

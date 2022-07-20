@@ -11,7 +11,7 @@
         :key="i"
         :id="`video-${video.id}`"
         @errokees:activate="playVideo(video.id)"
-        @errokeesselected="scrollTop(video.id)"
+        @errokees:selected="scrollTop(video.id)"
       >
         <div class="card-image">
             <figure>

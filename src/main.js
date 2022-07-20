@@ -14,15 +14,15 @@ Vue.config.productionTip = false;
 
 Vue.prototype.$bus = new Vue();
 Vue.prototype.$errokees = new Errokees(null, {
-    origin: 'right',
-    scroll: false,
-    selectEvent: {
-      name: 'errokeesselected',
-    },
-    deselectEvent: {
-      name: 'errokeesdeselected',
-    },
-  });
+  origin: 'right',
+  scroll: false,
+  selectEvent: {
+    name: 'errokees:selected',
+  },
+  deselectEvent: {
+    name: 'errokees:deselected',
+  },
+});
 
 Vue.use(Buefy);
 
