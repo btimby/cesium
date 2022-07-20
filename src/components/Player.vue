@@ -40,7 +40,11 @@ export default {
   },
 
   mounted() {
+    const video = this.$refs.video;
     document.addEventListener('keydown', this.onKeyDown.bind(this));
+    video.addEventListener('playing', () => this.$bus.$emit('idle'));
+    video.addEventListener('stalled', () => this.$bus.$emit('busy'));
+    video.addEventListener('waiting', () => this.$bus.$emit('busy'));
   },
 
   unmounted() {
@@ -48,6 +52,10 @@ export default {
   },
 
   watch: {
+    src() {
+      this.$bus.$emit('busy');
+    },
+
     visible(newValue, oldValue) {
       const video = this.$refs.video;
 

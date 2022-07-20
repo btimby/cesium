@@ -8,6 +8,9 @@
       :visible="player.visible"
       :src="player.src"
     />
+    <Loading
+      :visible="loading.visible"
+    />
   </div>
 </template>
 
@@ -15,6 +18,7 @@
 import Sidebar from '@/components/Sidebar';
 import Grid from '@/components/Grid';
 import Player from '@/components/Player';
+import Loading from '@/components/Loading';
 
 export default {
   name: 'App',
@@ -23,6 +27,7 @@ export default {
     Sidebar,
     Grid,
     Player,
+    Loading,
   },
 
   data() {
@@ -30,13 +35,18 @@ export default {
       player: {
         visible: false,
         src: null,
-      }
+      },
+      loading: {
+        visible: false,
+      },
     };
   },
 
   mounted() {
     this.$bus.$on('video:play', this.onVideoPlay.bind(this));
     this.$bus.$on('video:stop', this.onVideoStop.bind(this));
+    this.$bus.$on('busy', () => this.loading.visible = true);
+    this.$bus.$on('idle', () => this.loading.visible = false);
   },
 
   unmounted() {
