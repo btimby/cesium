@@ -17,8 +17,9 @@
     "bulma": "^0.9.4",
     "core-js": "^2.6.5",
     "debug": "^4.3.2",
-    "errokees": "^0.1.8",
+    "errokees": "^0.2.1",
     "sass": "^1.53.0",
+    "smoothscroll-polyfill": "^0.4.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },

@@ -21,39 +21,64 @@
           <div
             @errokeesselected="onMenuSelected"
             @errokeesdeselected="onMenuDeselected"
+            data-ek-activate-event-name="click"
+            data-ek-activate-event-target="a"
             class="errokees-selectable"
           >
             <b-menu-list>
               <b-menu-item
-                icon="information-outline"
-                label="Info"
-              ></b-menu-item>
-            </b-menu-list>
-          </div>
-          <div
-            @errokeesselected="onMenuSelected"
-            @errokeesdeselected="onMenuDeselected"
-            class="errokees-selectable"
-          >
-            <b-menu-list>
-              <b-menu-item
-                label="Expo"
-                icon="link"
+                icon="home"
+                label="Home"
                 tag="router-link"
-                target="_blank"
-                to="/expo"
+                to="/"
               ></b-menu-item>
             </b-menu-list>
           </div>
           <div
             @errokeesselected="onMenuSelected"
             @errokeesdeselected="onMenuDeselected"
+            data-ek-activate-event-name="click"
+            data-ek-activate-event-target="a"
             class="errokees-selectable"
           >
             <b-menu-list>
               <b-menu-item
-                icon="logout"
-                label="Logout"
+                icon="magnify"
+                label="Search"
+                tag="router-link"
+                to="/search"
+              ></b-menu-item>
+            </b-menu-list>
+          </div>
+          <div
+            @errokeesselected="onMenuSelected"
+            @errokeesdeselected="onMenuDeselected"
+            data-ek-activate-event-name="click"
+            data-ek-activate-event-target="a"
+            class="errokees-selectable"
+          >
+            <b-menu-list>
+              <b-menu-item
+                icon="cog-outline"
+                label="Settings"
+                tag="router-link"
+                to="/settings"
+              ></b-menu-item>
+            </b-menu-list>
+          </div>
+          <div
+            @errokeesselected="onMenuSelected"
+            @errokeesdeselected="onMenuDeselected"
+            data-ek-activate-event-name="click"
+            data-ek-activate-event-target="a"
+            class="errokees-selectable"
+          >
+            <b-menu-list>
+              <b-menu-item
+                icon="key-outline"
+                label="Accounts"
+                tag="router-link"
+                to="/subscriptions"
               ></b-menu-item>
             </b-menu-list>
           </div>
@@ -121,7 +146,7 @@ export default {
 
 .b-sidebar {
     .sidebar-content {
-      width: 120px;
+      width: 130px;
         &.is-mini {
           width: 48px;
             &:not(.is-mini-expand),
