@@ -79,10 +79,10 @@ export default {
           break;
 
         case PLAY:
-          if (video.playing) {
-            video.pause();
-          } else {
+          if (video.paused) {
             video.play();
+          } else {
+            video.pause();
           }
           break;
 
